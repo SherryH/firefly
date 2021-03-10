@@ -1,81 +1,29 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "The backend for the firefly project",
-  "main": "index.js",
+  "name": "@keystonejs/example-projects-starter",
+  "description": "An example KeystoneJS project with a User list and Authentication.",
+  "private": true,
+  "version": "6.0.1",
+  "author": "The KeystoneJS Development Team",
+  "repository": "https://github.com/keystonejs/keystone-5/tree/master/packages/create-keystone-app/example-projects/starter",
+  "homepage": "https://github.com/keystonejs/keystone-5",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "scripts": {
-    "dev": "keystone-next dev",
-    "start": "keystone-next start",
-    "build": "keystone-next build"
-  },
-  "author": "",
-  "license": "ISC",
-  "eslintConfig": {
-    "extends": "wesbos/typescript.js",
-    "rules": {
-      "@typescript-eslint/no-unsafe-assignment": 0,
-      "@typescript-eslint/no-unsafe-member-access": 0
-    }
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": 10,
-            "browsers": [
-              "last 2 chrome versions",
-              "last 2 firefox versions",
-              "last 2 safari versions",
-              "last 2 edge versions"
-            ]
-          }
-        }
-      ],
-      "@babel/preset-react",
-      "@babel/preset-typescript"
-    ]
+    "dev": "cross-env NODE_ENV=development DISABLE_LOGGING=true keystone dev",
+    "build": "cross-env NODE_ENV=production keystone build",
+    "start": "cross-env NODE_ENV=production keystone start",
+    "create-tables": "cross-env CREATE_TABLES=true keystone create-tables"
   },
   "dependencies": {
-    "@babel/plugin-transform-runtime": "^7.13.9",
-    "@babel/preset-env": "^7.13.9",
-    "@babel/preset-react": "^7.12.13",
-    "@babel/preset-typescript": "^7.13.0",
-    "@babel/runtime": "^7.13.9",
-    "@keystone-next/admin-ui": "^10.0.0",
-    "@keystone-next/auth": "^16.0.0",
-    "@keystone-next/cloudinary": "^3.0.1",
-    "@keystone-next/fields": "^5.1.0",
-    "@keystone-next/keystone": "^11.0.0",
-    "@keystone-next/server-side-graphql-client-legacy": "^2.0.1",
-    "@keystone-next/types": "^14.0.0",
-    "@types/nodemailer": "^6.4.0",
-    "dotenv": "^8.2.0",
-    "next": "10.0.7",
-    "nodemailer": "^6.5.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.9.0",
-    "@typescript-eslint/parser": "^4.9.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.14.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-airbnb-typescript": "^12.0.0",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-config-wesbos": "^2.0.0-beta.4",
-    "eslint-plugin-html": "^6.1.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "^2.2.1",
-    "typescript": "^4.2.3"
-  },
-  "engines": {
-    "node": ">=14.0.0"
+    "@keystonejs/adapter-mongoose": "^11.1.0",
+    "@keystonejs/app-admin-ui": "^7.4.1",
+    "@keystonejs/app-graphql": "^6.2.2",
+    "@keystonejs/auth-password": "^6.0.2",
+    "@keystonejs/fields": "^22.0.1",
+    "@keystonejs/keystone": "^19.2.1",
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0"
   }
 }
