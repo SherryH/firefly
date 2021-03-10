@@ -15,5 +15,9 @@ module.exports = {
       ref: 'Offer.owner',
       many: true,
     },
+    userImage: {
+      type: Relationship,
+      ref: 'UserImage.userProfile',
+    },
   },
 };

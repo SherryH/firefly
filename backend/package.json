@@ -22,6 +22,8 @@
     "@keystonejs/app-graphql": "^6.2.2",
     "@keystonejs/auth-password": "^6.0.2",
     "@keystonejs/fields": "^22.0.1",
+    "@keystonejs/fields-cloudinary-image": "^2.2.0",
+    "@keystonejs/file-adapters": "^7.1.0",
     "@keystonejs/keystone": "^19.2.1",
     "cross-env": "^7.0.3",
     "dotenv": "^8.2.0"
