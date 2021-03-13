@@ -8,6 +8,7 @@ const initialiseData = require('./initial-data');
 const UserProfileSchema = require('./lists/UserProfile.js');
 const OfferSchema = require('./lists/Offer.js');
 const UserImageSchema = require('./lists/UserImage.js');
+const OfferImageSchema = require('./lists/OfferImage.js');
 
 const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
 const PROJECT_NAME = 'backend';
@@ -73,6 +74,7 @@ keystone.createList('User', {
 keystone.createList('UserProfile', UserProfileSchema);
 keystone.createList('Offer', OfferSchema);
 keystone.createList('UserImage', UserImageSchema);
+keystone.createList('OfferImage', OfferImageSchema);
 
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,

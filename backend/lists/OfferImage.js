@@ -12,9 +12,9 @@ const fileAdapter = new CloudinaryAdapter({
 module.exports = {
   fields: {
     image: { type: CloudinaryImage, adapter: fileAdapter },
-    userProfile: {
+    offer: {
       type: Relationship,
-      ref: 'UserProfile.userImage',
+      ref: 'Offer.offerImages',
     },
   },
 };

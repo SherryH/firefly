@@ -15,5 +15,10 @@ module.exports = {
       type: Relationship,
       ref: 'UserProfile.offers',
     },
+    offerImages: {
+      type: Relationship,
+      ref: 'OfferImage.offer',
+      many: true,
+    },
   },
 };

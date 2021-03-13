@@ -1,35 +1,77 @@
-import { Avatar, Text, VStack, HStack, Heading, Image } from '@chakra-ui/react';
-import { Layout } from '../Layout/Layout';
+import { gql, useQuery } from '@apollo/client';
+import {
+  Avatar,
+  Text,
+  VStack,
+  HStack,
+  Heading,
+  Image,
+  Link,
+} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import { Offer } from '../Offer/Offer';
 
-// add border radisu to Tag
-export default function UserProfilePage() {
+const USERPROFILE_QUERY = gql`
+  query singleUser($id: ID!) {
+    UserProfile(where: { id: $id }) {
+      id
+      name
+      offers {
+        title
+        description
+        offerImages {
+          image {
+            id
+            publicUrlTransformed
+          }
+        }
+      }
+    }
+  }
+`;
+
+export default function UserProfilePage({ query }) {
+  const [allImages, setAllImages] = useState([]);
+  const { id } = query;
+  const { data, error, loading } = useQuery(USERPROFILE_QUERY, {
+    variables: { id },
+  });
+  const { name, offers } = data?.UserProfile || {};
+
+  useEffect(() => {
+    // when data is returned, compute allImages of the offers
+    const allImages = offers?.reduce((pre, cur) => {
+      return pre.concat(cur.offerImages).map((image) => image?.image);
+    }, []);
+    setAllImages(allImages);
+  }, [name]);
+
   return (
     <VStack bg="red.100" w="70%" margin="auto" padding="5">
-      <Heading marginBottom={10}>螢火蟲計畫</Heading>
+      <Link href="/">
+        <Heading marginBottom={10}>螢火蟲計畫</Heading>
+      </Link>
       <HStack marginBottom={10}>
         <Avatar size="2xl" />
-        <Text fontSize="5xl">User Name</Text>
+        <Text fontSize="5xl">{name}</Text>
       </HStack>
       <VStack marginBottom={9} spacing={5} as="ul">
-        <Offer as="li">Ukulele Together</Offer>
-        <Offer as="li">How to have a balanced diet</Offer>
+        {offers?.map(({ title, id }) => (
+          <Offer as="li" key={id}>
+            {title}
+          </Offer>
+        ))}
       </VStack>
       <HStack spacing={5}>
-        <Image
-          boxSize="150px"
-          objectFit="cover"
-          src="/static/wine.jpg"
-          alt="Dan Abramov"
-          borderRadius="lg"
-        />
-        <Image
-          boxSize="150px"
-          objectFit="cover"
-          src="/static/files.png"
-          alt="Dan Abramov"
-          borderRadius="lg"
-        />
+        {allImages?.map(({ publicUrlTransformed }) => (
+          <Image
+            boxSize="150px"
+            objectFit="cover"
+            src={publicUrlTransformed}
+            alt="offerImage"
+            borderRadius="lg"
+          />
+        ))}
       </HStack>
     </VStack>
   );
