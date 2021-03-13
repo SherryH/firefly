@@ -2,13 +2,16 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { ApolloProvider } from '@apollo/client';
 import withData from '../lib/withData';
+import { Layout } from '../components/Layout/Layout';
 
 function MyApp({ Component, pageProps, ...otherProps }) {
   const { apollo } = otherProps;
   return (
     <ApolloProvider client={apollo}>
       <ChakraProvider>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ChakraProvider>
     </ApolloProvider>
   );
@@ -24,7 +27,7 @@ MyApp.getInitialProps = async (context) => {
   if (Component.getInitialProps) {
     // at the moment Component.getInitialProps is undefined
     pageProps = await Component.getInitialProps(ctx);
-    console.log('compoennt getInitialProps pageprops?', pageProps, ctx);
+    console.log('compoennt getInitialProps pageprops?', pageProps);
   }
   pageProps.query = ctx.query;
   return {
