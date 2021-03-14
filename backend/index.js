@@ -80,7 +80,8 @@ keystone.createList('OfferImage', OfferImageSchema);
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
   list: 'User',
-  config: { protectIdentities: process.env.NODE_ENV === 'production' },
+  config: { protectIdentities: false },
+  // config: { protectIdentities: process.env.NODE_ENV === 'production' },
 });
 
 module.exports = {
