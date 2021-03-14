@@ -19,6 +19,7 @@ const adapterConfig = {
 const keystone = new Keystone({
   adapter: new Adapter(adapterConfig),
   onConnect: process.env.CREATE_TABLES !== 'true' && initialiseData,
+  cookieSecret: process.env.COOKIE_SECRET,
 });
 
 // Access control functions
