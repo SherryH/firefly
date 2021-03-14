@@ -84,6 +84,8 @@ const authStrategy = keystone.createAuthStrategy({
   // config: { protectIdentities: process.env.NODE_ENV === 'production' },
 });
 
+console.log('what env is this?', process.env.NODE_ENV);
+
 module.exports = {
   keystone,
   apps: [
