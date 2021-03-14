@@ -63,13 +63,13 @@ keystone.createList('User', {
     },
   },
   // List-level access controls
-  access: {
-    read: access.userIsAdminOrOwner,
-    update: access.userIsAdminOrOwner,
-    create: access.userIsAdmin,
-    delete: access.userIsAdmin,
-    auth: true,
-  },
+  // access: {
+  //   read: access.userIsAdminOrOwner,
+  //   update: access.userIsAdminOrOwner,
+  //   create: access.userIsAdmin,
+  //   delete: access.userIsAdmin,
+  //   auth: true,
+  // },
 });
 
 keystone.createList('UserProfile', UserProfileSchema);
@@ -90,10 +90,11 @@ module.exports = {
   keystone,
   apps: [
     new GraphQLApp(),
-    new AdminUIApp({
-      name: PROJECT_NAME,
-      enableDefaultRoute: true,
-      authStrategy,
-    }),
+    new AdminUIApp(),
+    // new AdminUIApp({
+    //   name: PROJECT_NAME,
+    //   enableDefaultRoute: true,
+    //   authStrategy,
+    // }),
   ],
 };
