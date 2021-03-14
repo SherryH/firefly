@@ -11,9 +11,8 @@ import {
   Image,
   Flex,
   Icon,
-  Link,
 } from '@chakra-ui/react';
-// import Link from 'next/link';
+import Link from 'next/link';
 import { FaUserAlt } from 'react-icons/fa';
 
 export default function OfferModal({ isOpen, onClose, offer }) {
@@ -50,7 +49,7 @@ export default function OfferModal({ isOpen, onClose, offer }) {
           </ModalBody>
 
           <ModalFooter sx={{ justifyContent: 'center' }}>
-            <Link href={`/userProfile/${owner?.id}`}>
+            <Link href={`/userProfile/${owner?.id}`} passHref>
               <Icon as={FaUserAlt} w={16} h={16} marginX="auto" />
             </Link>
           </ModalFooter>

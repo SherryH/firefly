@@ -1,13 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
-import {
-  Avatar,
-  Text,
-  VStack,
-  HStack,
-  Heading,
-  Image,
-  Link,
-} from '@chakra-ui/react';
+import { Avatar, Text, VStack, HStack, Heading, Image } from '@chakra-ui/react';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Offer } from '../Offer/Offer';
 
@@ -17,6 +10,7 @@ const USERPROFILE_QUERY = gql`
       id
       name
       offers {
+        id
         title
         description
         offerImages {
@@ -57,14 +51,15 @@ export default function UserProfilePage({ query }) {
       </HStack>
       <VStack marginBottom={9} spacing={5} as="ul">
         {offers?.map(({ title, id }) => (
-          <Offer as="li" key={id}>
+          <Offer as="li" id={id} key={id}>
             {title}
           </Offer>
         ))}
       </VStack>
       <HStack spacing={5}>
-        {allImages?.map(({ publicUrlTransformed }) => (
+        {allImages?.map(({ publicUrlTransformed, id }) => (
           <Image
+            key={id}
             boxSize="150px"
             objectFit="cover"
             src={publicUrlTransformed}

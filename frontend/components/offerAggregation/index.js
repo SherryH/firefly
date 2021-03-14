@@ -36,17 +36,16 @@ const ALL_OFFERS_QUERY = gql`
 
 export default function OfferAggregation() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedOffer, setSelectedOffer] = useState(null);
+  const [selectedOfferIndex, setSelectedOfferIndex] = useState(null);
   const { data, error } = useQuery(ALL_OFFERS_QUERY);
   if (error) {
     console.log(error);
   }
   const allOffers = data?.allOffers;
   const handleOfferClick = (index) => () => {
-    setSelectedOffer(allOffers?.[index]);
+    setSelectedOfferIndex(allOffers?.[index]);
     onOpen();
   };
-  console.log('data', allOffers);
   return (
     <>
       <Flex justify="space-around" padding="8">
@@ -63,16 +62,15 @@ export default function OfferAggregation() {
           </Offer>
         ))}
       </VStack>
-      <i className="fas fa-user"></i>
-      <FaUserAlt />
-      <Flex justify="center" onClick={onOpen}>
+
+      <Flex justify="center" onClick={onOpen} marginTop={5}>
         <Icon as={FaUserAlt} w={20} h={20} marginX="auto" />
       </Flex>
       <OfferModal
         onOpen={onOpen}
         onClose={onClose}
         isOpen={isOpen}
-        offer={selectedOffer}
+        offer={selectedOfferIndex}
       />
     </>
   );

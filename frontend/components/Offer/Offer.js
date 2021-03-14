@@ -1,9 +1,10 @@
 import React from 'react';
 import { Tag } from '@chakra-ui/react';
 
-const OfferComponent = ({ children, ...rest }, ref) => {
+const OfferComponent = ({ id, children, ...rest }, ref) => {
   return (
     <Tag
+      key={id}
       fontSize="2xl"
       px={5}
       py={3}
