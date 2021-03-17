@@ -63,13 +63,13 @@ keystone.createList('User', {
     },
   },
   // List-level access controls
-  // access: {
-  //   read: access.userIsAdminOrOwner,
-  //   update: access.userIsAdminOrOwner,
-  //   create: access.userIsAdmin,
-  //   delete: access.userIsAdmin,
-  //   auth: true,
-  // },
+  access: {
+    read: access.userIsAdminOrOwner,
+    update: access.userIsAdminOrOwner,
+    create: access.userIsAdmin,
+    delete: access.userIsAdmin,
+    auth: true,
+  },
 });
 
 keystone.createList('UserProfile', UserProfileSchema);
@@ -80,8 +80,8 @@ keystone.createList('OfferImage', OfferImageSchema);
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
   list: 'User',
-  config: { protectIdentities: false },
-  // config: { protectIdentities: process.env.NODE_ENV === 'production' },
+  // config: { protectIdentities: false },
+  config: { protectIdentities: process.env.NODE_ENV === 'production' },
 });
 
 console.log('what env is this?', process.env.NODE_ENV);
@@ -90,11 +90,11 @@ module.exports = {
   keystone,
   apps: [
     new GraphQLApp(),
-    new AdminUIApp(),
-    // new AdminUIApp({
-    //   name: PROJECT_NAME,
-    //   enableDefaultRoute: true,
-    //   authStrategy,
-    // }),
+    // new AdminUIApp(),
+    new AdminUIApp({
+      name: PROJECT_NAME,
+      enableDefaultRoute: true,
+      authStrategy,
+    }),
   ],
 };
