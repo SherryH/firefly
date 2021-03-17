@@ -7,19 +7,25 @@ This backend server was created using KeystoneJS Starter Template.
 - KeystoneJS 5
 - MongoDB Atlas
 
-## Running the Project.
+## Running the Project
 
-To run this project first run `npm install`. Note: If you generated this project via the Keystone cli step this has been done for you \\o/.
+`npm install`
 
-Once running, the Keystone Admin UI is reachable via `localhost:3000/admin`.
+## End Points
 
-## Next steps
+#### Admin UI
 
-This example has no front-end application but you can build your own using the GraphQL API (`http://localhost:3000/admin/graphiql`).
+`localhost:3000/admin`
 
-## Deployment
+#### GraphQL API
 
-### Heroku
+`http://localhost:3000/admin/graphiql`
+
+## Development
+
+The database table currently used is `secondDB`
+
+## Heroku Deployment
 
 ```
 git subtree push --prefix backend/ heroku main
