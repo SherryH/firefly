@@ -1,5 +1,7 @@
 require('dotenv').config();
 const { Keystone } = require('@keystonejs/keystone');
+const expressSession = require('express-session');
+const MongoStore = require('connect-mongo')(expressSession);
 const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
 const { Text, Checkbox, Password } = require('@keystonejs/fields');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
@@ -16,10 +18,16 @@ const adapterConfig = {
   mongoUri: process.env.DATABASE_URL,
 };
 
+const sessionStore = {
+  sessionStore: new MongoStore({
+    url: process.env.MONGO_URL,
+  }),
+};
 const keystone = new Keystone({
   adapter: new Adapter(adapterConfig),
   onConnect: process.env.CREATE_TABLES !== 'true' && initialiseData,
   cookieSecret: process.env.COOKIE_SECRET,
+  ...(process.env.NODE_ENV === 'production' && sessionStore),
 });
 
 // Access control functions
@@ -83,8 +91,6 @@ const authStrategy = keystone.createAuthStrategy({
   // config: { protectIdentities: false },
   config: { protectIdentities: process.env.NODE_ENV === 'production' },
 });
-
-console.log('what env is this?', process.env.NODE_ENV);
 
 module.exports = {
   keystone,
