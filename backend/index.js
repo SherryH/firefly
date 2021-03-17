@@ -18,16 +18,13 @@ const adapterConfig = {
   mongoUri: process.env.DATABASE_URL,
 };
 
-const sessionStore = {
-  sessionStore: new MongoStore({
-    url: process.env.MONGO_URL,
-  }),
-};
 const keystone = new Keystone({
   adapter: new Adapter(adapterConfig),
   onConnect: process.env.CREATE_TABLES !== 'true' && initialiseData,
   cookieSecret: process.env.COOKIE_SECRET,
-  ...(process.env.NODE_ENV === 'production' && sessionStore),
+  sessionStore: new MongoStore({
+    url: process.env.MONGO_URL,
+  }),
 });
 
 // Access control functions
