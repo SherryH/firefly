@@ -23,7 +23,7 @@ This backend server was created using KeystoneJS Starter Template.
 
 ## Development
 
-The database table currently used is `secondDB`
+The database table currently used is `myFirstDatabase`
 
 ## Heroku Deployment
 
