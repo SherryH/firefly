@@ -22,6 +22,7 @@ const keystone = new Keystone({
   adapter: new Adapter(adapterConfig),
   onConnect: process.env.CREATE_TABLES !== 'true' && initialiseData,
   cookieSecret: process.env.COOKIE_SECRET,
+  secureCookies: false, //<-- needed on non-SSL servers
   sessionStore: new MongoStore({
     url: process.env.MONGO_URL,
   }),
