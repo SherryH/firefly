@@ -18,10 +18,17 @@ const adapterConfig = {
   mongoUri: process.env.DATABASE_URL,
 };
 
+const cookie = {
+  secure: false, //<-- needed on non-SSL servers. Set to true if SSL enabled
+  maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
+  sameSite: false,
+};
+
 const keystone = new Keystone({
   adapter: new Adapter(adapterConfig),
   onConnect: process.env.CREATE_TABLES !== 'true' && initialiseData,
   cookieSecret: process.env.COOKIE_SECRET,
+  cookie,
   secureCookies: false, //<-- needed on non-SSL servers
   sessionStore: new MongoStore({
     url: process.env.MONGO_URL,
