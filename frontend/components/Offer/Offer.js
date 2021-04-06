@@ -9,7 +9,7 @@ const OfferComponent = ({ id, children, ...rest }, ref) => {
       px={5}
       py={3}
       borderRadius="30px"
-      bgColor="orange.100"
+      bgColor="bg.100"
       w="100%"
       {...rest}
       ref={ref}

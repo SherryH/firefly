@@ -1,14 +1,16 @@
-// import '../styles/globals.css'
+import '../styles/globals.css'
 import { ChakraProvider } from '@chakra-ui/react';
 import { ApolloProvider } from '@apollo/client';
 import withData from '../lib/withData';
 import { Layout } from '../components/Layout';
+import { theme } from '../lib/chakraTheme';
+
 
 function MyApp({ Component, pageProps, ...otherProps }) {
   const { apollo } = otherProps;
   return (
     <ApolloProvider client={apollo}>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <Layout>
           <Component {...pageProps} />
         </Layout>

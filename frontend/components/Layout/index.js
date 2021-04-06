@@ -17,10 +17,10 @@ export const Layout = ({ children, ...rest }) => {
         as="main"
         mx="auto"
         maxW={['100%', '800px']}
-        minH="100vw"
-        minH="100vh"
-        paddingY={6}
-        bg="red.100"
+        minH="100%"
+        padding="16px"
+        border="1px"
+        borderColor="gray.100"
         {...rest}
       >
         {children}
