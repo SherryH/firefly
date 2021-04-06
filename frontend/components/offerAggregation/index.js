@@ -1,18 +1,17 @@
-import Head from 'next/head';
+import { useState } from 'react';
 import {
   Box,
   VStack,
   Flex,
   Heading,
   useDisclosure,
-  Icon,
 } from '@chakra-ui/react';
 import { gql, useQuery } from '@apollo/client';
-import Link from 'next/link';
-import { FaUserAlt } from 'react-icons/fa';
+import { FaRegUser } from 'react-icons/fa';
+import { BiMessageRoundedEdit,BiPlusCircle } from 'react-icons/bi';
 import { Offer } from '../Offer/Offer';
 import OfferModal from './OfferModal';
-import { useState } from 'react';
+import { Icon } from '../Icon';
 
 const ALL_OFFERS_QUERY = gql`
   query ALL_OFFERS_QUERY {
@@ -48,14 +47,27 @@ export default function OfferAggregation() {
   };
   return (
     <Flex direction="column" minH="100%">
-      <Flex justify="space-around" padding="24px" borderBottom="brand.100" borderBottomWidth="1px">
+      <Flex
+        justify="space-around"
+        padding="24px"
+        borderBottom="brand.100"
+        borderBottomWidth="1px"
+      >
         <Box>
           <Heading fontSize="2xl">09. March. 21</Heading>
         </Box>
         <Heading fontSize="2xl">Berlin</Heading>
       </Flex>
-      <Heading as="h6" size="lg" marginTop="24px" fontWeight="normal" color="brand.100">What's offering now</Heading>
-      
+      <Heading
+        as="h6"
+        size="lg"
+        marginTop="24px"
+        fontWeight="normal"
+        color="brand.100"
+      >
+        What's offering now
+      </Heading>
+
       <VStack pt="3" spacing={4} flex="1">
         {allOffers?.map(({ title, id }, index) => (
           <Offer key={id} onClick={handleOfferClick(index)}>
@@ -64,8 +76,16 @@ export default function OfferAggregation() {
         ))}
       </VStack>
 
-      <Flex justify="center" onClick={onOpen} marginTop={5}>
-        <Icon as={FaUserAlt} w={20} h={20} marginX="auto" />
+      <Flex
+        justify="space-evenly"
+        marginTop={5}
+        borderTop="1px"
+        borderColor="gray.100"
+        paddingTop="16px"
+      >
+        <Icon icon={FaRegUser} text="My Profile" disabled />
+        <Icon icon={BiMessageRoundedEdit} text="Message" />
+        <Icon icon={BiPlusCircle} text="Add Offer" />
       </Flex>
       <OfferModal
         onOpen={onOpen}
