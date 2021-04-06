@@ -27,6 +27,8 @@ The database table currently used is `myFirstDatabase`
 
 ## Heroku Deployment
 
+In the root directory of the repo, run:
+
 ```
 git subtree push --prefix backend/ heroku main
 ```

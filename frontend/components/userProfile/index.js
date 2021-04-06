@@ -33,9 +33,10 @@ export default function UserProfilePage({ query }) {
   const { name, offers } = data?.UserProfile || {};
 
   useEffect(() => {
-    // when data is returned, compute allImages of the offers
+    // get all offerImages belong to the user
     const allImages = offers?.reduce((pre, cur) => {
-      return pre.concat(cur.offerImages).map((image) => image?.image);
+      const currentImages = cur.offerImages.map(image => image?.image )
+      return pre.concat(currentImages);
     }, []);
     setAllImages(allImages);
   }, [name]);
