@@ -1,14 +1,8 @@
 import { useState } from 'react';
-import {
-  Box,
-  VStack,
-  Flex,
-  Heading,
-  useDisclosure,
-} from '@chakra-ui/react';
+import { Box, VStack, Flex, Heading, useDisclosure } from '@chakra-ui/react';
 import { gql, useQuery } from '@apollo/client';
 import { FaRegUser } from 'react-icons/fa';
-import { BiMessageRoundedEdit,BiPlusCircle } from 'react-icons/bi';
+import { BiMessageRoundedEdit, BiPlusCircle } from 'react-icons/bi';
 import { Offer } from '../Offer/Offer';
 import OfferModal from './OfferModal';
 import { Icon } from '../Icon';
