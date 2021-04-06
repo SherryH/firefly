@@ -18,6 +18,7 @@ export const Layout = ({ children, ...rest }) => {
         mx="auto"
         maxW={['100%', '800px']}
         minH="100%"
+        h="100%"
         padding="16px"
         border="1px"
         borderColor="gray.100"

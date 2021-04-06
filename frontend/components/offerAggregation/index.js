@@ -47,7 +47,7 @@ export default function OfferAggregation() {
     onOpen();
   };
   return (
-    <>
+    <Flex direction="column" minH="100%">
       <Flex justify="space-around" padding="24px" borderBottom="brand.100" borderBottomWidth="1px">
         <Box>
           <Heading fontSize="2xl">09. March. 21</Heading>
@@ -56,7 +56,7 @@ export default function OfferAggregation() {
       </Flex>
       <Heading as="h6" size="lg" marginTop="24px" fontWeight="normal" color="brand.100">What's offering now</Heading>
       
-      <VStack pt="3" spacing={4}>
+      <VStack pt="3" spacing={4} flex="1">
         {allOffers?.map(({ title, id }, index) => (
           <Offer key={id} onClick={handleOfferClick(index)}>
             {title}
@@ -73,6 +73,6 @@ export default function OfferAggregation() {
         isOpen={isOpen}
         offer={selectedOfferIndex}
       />
-    </>
+    </Flex>
   );
 }
