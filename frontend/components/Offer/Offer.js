@@ -6,11 +6,12 @@ const OfferComponent = ({ id, children, ...rest }, ref) => {
     <Tag
       key={id}
       fontSize="2xl"
-      px={5}
-      py={3}
+      px="24px"
+      py="24px"
       borderRadius="30px"
       bgColor="bg.100"
       w="100%"
+      maxH="1.5rem"
       {...rest}
       ref={ref}
     >

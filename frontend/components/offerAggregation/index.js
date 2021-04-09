@@ -40,7 +40,7 @@ export default function OfferAggregation() {
     onOpen();
   };
   return (
-    <Flex direction="column" minH="100%">
+    <Flex direction="column" minH="100%" h="100%">
       <Flex
         justify="space-around"
         padding="24px"
@@ -62,7 +62,7 @@ export default function OfferAggregation() {
         What's offering now
       </Heading>
 
-      <VStack pt="3" spacing={4} flex="1">
+      <VStack pt="3" spacing={4} flex="1" h="100%" overflow="auto">
         {allOffers?.map(({ title, id }, index) => (
           <Offer key={id} onClick={handleOfferClick(index)}>
             {title}
