@@ -4,23 +4,22 @@ import { css } from '@emotion/react';
 export const Icon = ({ icon, text, disabled }) => {
   const color = disabled ? 'gray.300' : 'brand.100';
   const textColor = disabled ? 'gray.300' : 'brand.900';
+
+  const hoverCss = css`
+    &:focus,
+    &:hover,
+    &:active {
+      font-weight: 800;
+      cursor: pointer;
+    }
+  `;
+
   return (
     <Flex
+      width="82px"
       direction="column"
       align="center"
-      css={css`
-        &:focus,
-        &:hover,
-        &:active {
-          font-weight: 800;
-          cursor: pointer;
-        }
-        /* &::before{
-          visibility:hidden;
-          font-weight:800;
-          content: attr(text);
-        } */
-      `}
+      css={[!disabled && hoverCss]}
     >
       <ChakraIcon
         aria-label={text}
