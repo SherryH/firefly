@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Box, VStack, Flex, Heading, useDisclosure } from '@chakra-ui/react';
 import { gql, useQuery } from '@apollo/client';
-import { FaRegUser } from 'react-icons/fa';
-import { BiMessageRoundedEdit, BiPlusCircle } from 'react-icons/bi';
+
 import { Offer } from '../Offer/Offer';
 import OfferModal from './OfferModal';
 import { Icon } from '../Icon';
+import { HomeFooter } from './HomeFooter';
+import { HomeHeader } from './HomeHeader';
 
 const ALL_OFFERS_QUERY = gql`
   query ALL_OFFERS_QUERY {
@@ -41,17 +42,7 @@ export default function OfferAggregation() {
   };
   return (
     <Flex direction="column" minH="100%" h="100%">
-      <Flex
-        justify="space-around"
-        padding="24px"
-        borderBottom="brand.100"
-        borderBottomWidth="1px"
-      >
-        <Box>
-          <Heading fontSize="2xl">09. March. 21</Heading>
-        </Box>
-        <Heading fontSize="2xl">Berlin</Heading>
-      </Flex>
+      <HomeHeader />
       <Heading
         as="h6"
         size="lg"
@@ -69,18 +60,8 @@ export default function OfferAggregation() {
           </Offer>
         ))}
       </VStack>
+      <HomeFooter />
 
-      <Flex
-        justify="space-evenly"
-        marginTop={5}
-        borderTop="1px"
-        borderColor="gray.100"
-        paddingTop="16px"
-      >
-        <Icon icon={FaRegUser} text="My Profile" disabled />
-        <Icon icon={BiMessageRoundedEdit} text="Message" />
-        <Icon icon={BiPlusCircle} text="Add Offer" />
-      </Flex>
       <OfferModal
         onOpen={onOpen}
         onClose={onClose}
