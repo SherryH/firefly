@@ -1,8 +1,8 @@
 import { Box, Flex, Heading } from '@chakra-ui/layout';
-import { useEffect, useState } from 'react';
+import { useUserRegion } from '../../hooks/useUserRegion';
 
 export const HomeHeader = () => {
-  const [region, setRegion] = useState('');
+  const { region } = useUserRegion();
   const currentDate = new Date();
 
   const date = new Intl.NumberFormat('en-GB', {
@@ -12,18 +12,6 @@ export const HomeHeader = () => {
   const month = currentDate.toLocaleDateString('default', { month: 'long' });
 
   const year = currentDate.getFullYear().toString().slice(-2);
-
-  useEffect(() => {
-    fetch('https://extreme-ip-lookup.com/json/')
-      .then((res) => res.json())
-      .then(({ region, city, country }) => {
-        const location = region || city || country;
-        setRegion(location);
-      })
-      .catch((data, status) => {
-        console.log('Request failed', data, status);
-      });
-  }, []);
 
   return (
     <Flex
