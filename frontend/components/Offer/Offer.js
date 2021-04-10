@@ -14,12 +14,16 @@ const OfferComponent = ({ id, children, ...rest }, ref) => {
       key={id}
       fontSize="2xl"
       px="24px"
-      py="24px"
+      py="12px"
       borderRadius="30px"
       color="brand.900"
       bgColor="bg.100"
       w="100%"
-      maxH="1.5rem"
+      lineHeight="1.5"
+      textOverflow="ellipsis"
+      overflow="hidden"
+      whiteSpace="nowrap"
+      display="inline-block"
       css={hoverCss}
       {...rest}
       ref={ref}
