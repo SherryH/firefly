@@ -1,4 +1,5 @@
 const { Text, Relationship } = require('@keystonejs/fields');
+const { Wysiwyg } = require('@keystonejs/fields-wysiwyg-tinymce');
 
 module.exports = {
   fields: {
@@ -7,9 +8,10 @@ module.exports = {
       isRequired: true,
     },
     description: {
-      type: Text,
-      isRequired: true,
-      isMultiline: true,
+      type: Wysiwyg,
+      editorConfig: {
+        branding: false,
+      },
     },
     owner: {
       type: Relationship,
