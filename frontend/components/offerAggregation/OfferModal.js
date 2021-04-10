@@ -11,9 +11,9 @@ import {
   Image,
   Flex,
   Icon,
-} from '@chakra-ui/react';
-import Link from 'next/link';
-import { FaUserAlt } from 'react-icons/fa';
+} from "@chakra-ui/react";
+import Link from "next/link";
+import { FaUserAlt } from "react-icons/fa";
 
 export default function OfferModal({ isOpen, onClose, offer }) {
   // const { isOpen, onOpen, onClose } = useDisclosure();
@@ -24,17 +24,17 @@ export default function OfferModal({ isOpen, onClose, offer }) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            <Heading>{title}</Heading>
+            <Heading
+              width="fit-content"
+              bgGradient="linear(to bottom, transparent 55%, bg.100 85% 100%)"
+            >
+              {title}
+            </Heading>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody minH="60vh">
             <Text>{description}</Text>
-            <Flex
-              justify="center"
-              marginTop={10}
-              wrap="wrap"
-              sx={{ gap: '8px' }}
-            >
+            <Flex justify="center" marginTop={10} wrap="wrap" gap="8px">
               {offerImages?.map(({ image }) => (
                 <Image
                   key={image.id}
@@ -48,7 +48,7 @@ export default function OfferModal({ isOpen, onClose, offer }) {
             </Flex>
           </ModalBody>
 
-          <ModalFooter sx={{ justifyContent: 'center' }}>
+          <ModalFooter sx={{ justifyContent: "center" }}>
             <Link href={`/userProfile/${owner?.id}`} passHref>
               <Icon as={FaUserAlt} w={16} h={16} marginX="auto" />
             </Link>

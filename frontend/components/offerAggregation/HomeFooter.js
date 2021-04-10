@@ -1,7 +1,7 @@
-import { Flex } from '@chakra-ui/layout';
-import { FaRegUser } from 'react-icons/fa';
-import { BiMessageRoundedEdit, BiPlusCircle } from 'react-icons/bi';
-import { Icon } from '../Icon';
+import { Flex } from "@chakra-ui/layout";
+import { FaRegUser } from "react-icons/fa";
+import { BiMessageRoundedEdit, BiPlusCircle } from "react-icons/bi";
+import { Icon } from "../Icon";
 
 export const HomeFooter = () => (
   <Flex
