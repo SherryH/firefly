@@ -10,6 +10,7 @@ import {
   Image,
   Flex,
   Icon,
+  Text,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { FaUserAlt } from "react-icons/fa";
@@ -20,7 +21,7 @@ export default function OfferModal({ isOpen, onClose, offer }) {
   if (typeof window !== "undefined") {
     DOMPurify = createDOMPurify(window);
   }
-  // const { isOpen, onOpen, onClose } = useDisclosure();
+
   const { title, description, offerImages, owner } = offer || {};
   return (
     <>
@@ -37,22 +38,24 @@ export default function OfferModal({ isOpen, onClose, offer }) {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody minH="60vh">
-            <div
+            <Text
+              fontSize="1.2rem"
+              color="brand.900"
               dangerouslySetInnerHTML={{
                 __html: DOMPurify?.sanitize(description),
               }}
             />
-            <Flex justify="center" marginTop={10} wrap="wrap" gap="8px">
-              {offerImages?.map(({ image }) => (
+            <Flex justify="center" marginTop={10} wrap="wrap">
+              {
                 <Image
-                  key={image.id}
-                  boxSize="180px"
+                  key={offerImages?.image.id}
+                  width="100%"
                   objectFit="cover"
-                  src={image.publicUrlTransformed}
+                  src={offerImages?.image.publicUrlTransformed}
                   alt={title}
                   borderRadius="lg"
                 />
-              ))}
+              }
             </Flex>
           </ModalBody>
 

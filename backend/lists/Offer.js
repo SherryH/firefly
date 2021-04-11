@@ -20,7 +20,6 @@ module.exports = {
     offerImages: {
       type: Relationship,
       ref: 'OfferImage.offer',
-      many: true,
     },
   },
 };
