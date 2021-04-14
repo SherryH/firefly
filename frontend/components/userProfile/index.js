@@ -1,8 +1,8 @@
-import { gql, useQuery } from '@apollo/client';
-import { Avatar, Text, VStack, HStack, Heading, Image } from '@chakra-ui/react';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { Offer } from '../Offer/Offer';
+import { gql, useQuery } from "@apollo/client";
+import { Avatar, Text, VStack, HStack, Heading, Image } from "@chakra-ui/react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Offer } from "../Offer/Offer";
 
 const USERPROFILE_QUERY = gql`
   query singleUser($id: ID!) {
@@ -35,7 +35,7 @@ export default function UserProfilePage({ query }) {
   useEffect(() => {
     // get all offerImages belong to the user
     const allImages = offers?.reduce((pre, cur) => {
-      const currentImages = cur.offerImages.map(image => image?.image )
+      const currentImages = cur.offerImages.image;
       return pre.concat(currentImages);
     }, []);
     setAllImages(allImages);

@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { Box, VStack, Flex, Heading, useDisclosure } from '@chakra-ui/react';
-import { gql, useQuery } from '@apollo/client';
+import { useState } from "react";
+import { Box, VStack, Flex, Heading, useDisclosure } from "@chakra-ui/react";
+import { gql, useQuery } from "@apollo/client";
 
-import { Offer } from '../Offer/Offer';
-import OfferModal from './OfferModal';
-import { Icon } from '../Icon';
-import { HomeFooter } from './HomeFooter';
-import { HomeHeader } from './HomeHeader';
+import { Offer } from "../Offer/Offer";
+import OfferModal from "./OfferModal";
+import { Icon } from "../Icon";
+import { HomeFooter } from "./HomeFooter";
+import { HomeHeader } from "./HomeHeader";
 
 const ALL_OFFERS_QUERY = gql`
   query ALL_OFFERS_QUERY {
@@ -37,8 +37,15 @@ export default function OfferAggregation() {
   }
   const allOffers = data?.allOffers;
   const handleOfferClick = (index) => () => {
-    setSelectedOfferIndex(allOffers?.[index]);
+    setSelectedOfferIndex(index);
     onOpen();
+  };
+
+  const offerProps = {
+    offer: allOffers?.[selectedOfferIndex],
+    selectedOfferIndex,
+    setSelectedOfferIndex,
+    maxIndex: allOffers?.length - 1,
   };
   return (
     <Flex direction="column" minH="100%" h="100%">
@@ -66,7 +73,7 @@ export default function OfferAggregation() {
         onOpen={onOpen}
         onClose={onClose}
         isOpen={isOpen}
-        offer={selectedOfferIndex}
+        {...offerProps}
       />
     </Flex>
   );
