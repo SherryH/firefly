@@ -1,14 +1,21 @@
 import { gql, useQuery } from "@apollo/client";
-import { Avatar, Text, VStack, HStack, Heading, Image } from "@chakra-ui/react";
+import { Text, VStack, HStack, Heading, Image, Flex } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Offer } from "../Offer/Offer";
+import { OfferHeader } from "../Offer/OfferHeader";
+import { Avatar } from "./Avatar";
 
 const USERPROFILE_QUERY = gql`
   query singleUser($id: ID!) {
     UserProfile(where: { id: $id }) {
       id
       name
+      userImage {
+        image {
+          publicUrlTransformed
+        }
+      }
       offers {
         id
         title
@@ -30,7 +37,9 @@ export default function UserProfilePage({ query }) {
   const { data, error, loading } = useQuery(USERPROFILE_QUERY, {
     variables: { id },
   });
-  const { name, offers } = data?.UserProfile || {};
+  const { name, offers, userImage } = data?.UserProfile || {};
+
+  const userImg = userImage?.image?.publicUrlTransformed;
 
   useEffect(() => {
     // get all offerImages belong to the user
@@ -42,15 +51,13 @@ export default function UserProfilePage({ query }) {
   }, [name]);
 
   return (
-    <VStack bg="red.100" w="70%" margin="auto" padding="5">
-      <Link href="/">
-        <Heading marginBottom={10}>螢火蟲計畫</Heading>
-      </Link>
-      <HStack marginBottom={10}>
-        <Avatar size="2xl" />
-        <Text fontSize="5xl">{name}</Text>
+    <Flex direction="column" id="vstack" color="brand.900">
+      <HStack w="100%" borderBottomWidth="1px" pb="24px">
+        <Avatar src={userImg} />
+        <Text fontSize="xl">{name}</Text>
       </HStack>
-      <VStack marginBottom={9} spacing={5} as="ul">
+      <OfferHeader marginBottom="16px">{`${name}'s on-going offers (${offers?.length})`}</OfferHeader>
+      <VStack marginBottom={9} spacing="16px" as="ul">
         {offers?.map(({ title, id }) => (
           <Offer as="li" id={id} key={id}>
             {title}
@@ -69,6 +76,6 @@ export default function UserProfilePage({ query }) {
           />
         ))}
       </HStack>
-    </VStack>
+    </Flex>
   );
 }
