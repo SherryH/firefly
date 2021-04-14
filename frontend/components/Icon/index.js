@@ -31,7 +31,11 @@ export const Icon = ({ icon, text, disabled, iconWrapperProps, iconProps }) => {
         color={color}
         {...iconProps}
       />
-      {text && <Text color={textColor}>{text}</Text>}
+      {text && (
+        <Text fontSize={["sm", "md"]} color={textColor}>
+          {text}
+        </Text>
+      )}
     </Flex>
   );
 };
