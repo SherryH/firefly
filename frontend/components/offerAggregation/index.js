@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Box, VStack, Flex, Heading, useDisclosure } from "@chakra-ui/react";
+import { VStack, Flex, useDisclosure } from "@chakra-ui/react";
 import { gql, useQuery } from "@apollo/client";
 
 import { Offer } from "../Offer/Offer";
 import OfferModal from "./OfferModal";
-import { Icon } from "../Icon";
 import { HomeFooter } from "./HomeFooter";
 import { HomeHeader } from "./HomeHeader";
+import { OfferHeader } from "../Offer/OfferHeader";
 
 const ALL_OFFERS_QUERY = gql`
   query ALL_OFFERS_QUERY {
@@ -50,7 +50,7 @@ export default function OfferAggregation() {
   return (
     <Flex direction="column" minH="100%" h="100%">
       <HomeHeader />
-      <Heading
+      <OfferHeader
         as="h6"
         size="lg"
         marginTop="24px"
@@ -58,7 +58,7 @@ export default function OfferAggregation() {
         color="brand.100"
       >
         What's offering now
-      </Heading>
+      </OfferHeader>
 
       <VStack pt="3" spacing={4} flex="1" h="100%" overflow="auto">
         {allOffers?.map(({ title, id }, index) => (

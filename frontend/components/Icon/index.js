@@ -1,9 +1,9 @@
-import { Icon as ChakraIcon, Text, Flex } from '@chakra-ui/react';
-import { css } from '@emotion/react';
+import { Icon as ChakraIcon, Text, Flex } from "@chakra-ui/react";
+import { css } from "@emotion/react";
 
-export const Icon = ({ icon, text, disabled }) => {
-  const color = disabled ? 'gray.300' : 'brand.100';
-  const textColor = disabled ? 'gray.300' : 'brand.900';
+export const Icon = ({ icon, text, disabled, iconWrapperProps, iconProps }) => {
+  const color = disabled ? "gray.300" : "brand.100";
+  const textColor = disabled ? "gray.300" : "brand.900";
 
   const hoverCss = css`
     &:focus,
@@ -20,14 +20,16 @@ export const Icon = ({ icon, text, disabled }) => {
       direction="column"
       align="center"
       css={[!disabled && hoverCss]}
+      {...iconWrapperProps}
     >
       <ChakraIcon
         aria-label={text}
         as={icon}
-        w={20}
-        h={20}
+        w={12}
+        h={12}
         marginX="auto"
         color={color}
+        {...iconProps}
       />
       {text && <Text color={textColor}>{text}</Text>}
     </Flex>
