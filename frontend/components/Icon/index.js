@@ -25,8 +25,8 @@ export const Icon = ({ icon, text, disabled, iconWrapperProps, iconProps }) => {
       <ChakraIcon
         aria-label={text}
         as={icon}
-        w={12}
-        h={12}
+        w={[12, 16]}
+        h={[12, 16]}
         marginX="auto"
         color={color}
         {...iconProps}

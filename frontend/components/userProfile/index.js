@@ -1,8 +1,9 @@
-import { gql, useQuery } from "@apollo/client";
-import { Text, VStack, HStack, Heading, Image, Flex } from "@chakra-ui/react";
-import { BiHome, BiMessageRoundedEdit, BiPlusCircle } from "react-icons/bi";
-
 import { useEffect, useState } from "react";
+import { gql, useQuery } from "@apollo/client";
+import { Text, VStack, HStack, Image, Flex } from "@chakra-ui/react";
+import { BiHome, BiMessageRoundedEdit, BiPlusCircle } from "react-icons/bi";
+import Link from "next/link";
+
 import { Icon } from "../Icon";
 import { Offer } from "../Offer/Offer";
 import { OfferHeader } from "../Offer/OfferHeader";
@@ -71,7 +72,7 @@ export default function UserProfilePage({ query }) {
           {allImages?.map(({ publicUrlTransformed, id }) => (
             <Image
               key={id}
-              boxSize="150px"
+              boxSize={["150px", "180px", "220px"]}
               objectFit="cover"
               src={publicUrlTransformed}
               alt="offerImage"
@@ -81,7 +82,9 @@ export default function UserProfilePage({ query }) {
         </HStack>
       </Flex>
       <Flex justifyContent="space-evenly">
-        <Icon icon={BiHome} text="Home" />
+        <Link href="/">
+          <Icon icon={BiHome} text="Home" />
+        </Link>
         <Icon icon={BiMessageRoundedEdit} text="Message" />
         <Icon icon={BiPlusCircle} text="Add Offer" />
       </Flex>

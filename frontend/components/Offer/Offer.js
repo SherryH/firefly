@@ -14,7 +14,7 @@ const OfferComponent = ({ id, children, ...rest }, ref) => {
   return (
     <Tag
       key={id}
-      fontSize={["md", "2xl"]}
+      fontSize={["md", "lg", "2xl"]}
       px="24px"
       py="12px"
       borderRadius="30px"
