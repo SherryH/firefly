@@ -21,7 +21,8 @@ const OfferComponent = ({ id, children, ...rest }, ref) => {
       color="brand.900"
       bgColor="bg.100"
       w="100%"
-      lineHeight={["1", "1.5"]}
+      lineHeight="1"
+      minH={["2.5rem", null, "2.8rem"]}
       textOverflow="ellipsis"
       overflow="hidden"
       whiteSpace="nowrap"
