@@ -1,7 +1,11 @@
+import React from "react";
 import { Icon as ChakraIcon, Text, Flex } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 
-export const Icon = ({ icon, text, disabled, iconWrapperProps, iconProps }) => {
+const IconComponent = (
+  { icon, text, disabled, iconWrapperProps, iconProps, ...rest },
+  ref
+) => {
   const color = disabled ? "gray.300" : "brand.100";
   const textColor = disabled ? "gray.300" : "brand.900";
 
@@ -16,11 +20,14 @@ export const Icon = ({ icon, text, disabled, iconWrapperProps, iconProps }) => {
 
   return (
     <Flex
+      as="a"
       width="82px"
       direction="column"
       align="center"
       css={[!disabled && hoverCss]}
       {...iconWrapperProps}
+      {...rest}
+      ref={ref}
     >
       <ChakraIcon
         aria-label={text}
@@ -39,3 +46,5 @@ export const Icon = ({ icon, text, disabled, iconWrapperProps, iconProps }) => {
     </Flex>
   );
 };
+
+export const Icon = React.forwardRef(IconComponent);

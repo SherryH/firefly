@@ -59,7 +59,7 @@ export default function UserProfilePage({ query }) {
         <Avatar src={userImg} />
         <Text fontSize="xl">{name}</Text>
       </HStack>
-      <Flex direction="column" flex="1">
+      <Flex direction="column" flex="1" h="100%" overflow="auto">
         <OfferHeader marginBottom="16px">{`${name}'s on-going offers (${offers?.length})`}</OfferHeader>
         <VStack marginBottom={9} spacing="16px" as="ul">
           {offers?.map(({ title, id }) => (
@@ -81,11 +81,13 @@ export default function UserProfilePage({ query }) {
           ))}
         </HStack>
       </Flex>
-      <Flex justifyContent="space-evenly">
-        <Link href="/">
+      <Flex justifyContent="space-evenly" mt="8px">
+        <Link href={{ pathname: "/" }} passHref>
           <Icon icon={BiHome} text="Home" />
         </Link>
-        <Icon icon={BiMessageRoundedEdit} text="Message" />
+        <Link href="/" passHref>
+          <Icon icon={BiMessageRoundedEdit} text="Message" />
+        </Link>
         <Icon icon={BiPlusCircle} text="Add Offer" />
       </Flex>
     </Flex>
