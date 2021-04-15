@@ -82,12 +82,10 @@ export default function UserProfilePage({ query }) {
         </HStack>
       </Flex>
       <Flex justifyContent="space-evenly" mt="8px">
-        <Link href={{ pathname: "/" }} passHref>
+        <Link href="/" passHref>
           <Icon icon={BiHome} text="Home" />
         </Link>
-        <Link href="/" passHref>
-          <Icon icon={BiMessageRoundedEdit} text="Message" />
-        </Link>
+        <Icon icon={BiMessageRoundedEdit} text="Message" />
         <Icon icon={BiPlusCircle} text="Add Offer" />
       </Flex>
     </Flex>
