@@ -5,6 +5,7 @@ export const OfferModalImage = ({ offerImages, title }) => {
     console.log("Error: Handle offerImages as an array!");
     return null;
   }
+  if (!offerImages) return null;
   return (
     <Image
       key={offerImages?.image.id}

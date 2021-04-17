@@ -1,7 +1,8 @@
+import React from "react";
 import { Tag } from "@chakra-ui/tag";
 import { pointerCss } from "../../lib/commonCss";
 
-export const OfferModalFooterTag = ({ children, ...rest }) => {
+const OfferModalFooterTagComponent = ({ children, ...rest }, ref) => {
   return (
     <Tag
       css={pointerCss}
@@ -13,8 +14,13 @@ export const OfferModalFooterTag = ({ children, ...rest }) => {
       fontWeight="300"
       color="brand.900"
       {...rest}
+      ref={ref}
     >
       {children}
     </Tag>
   );
 };
+
+export const OfferModalFooterTag = React.forwardRef(
+  OfferModalFooterTagComponent
+);
