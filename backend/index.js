@@ -29,6 +29,10 @@ const keystone = new Keystone({
   onConnect: process.env.CREATE_TABLES !== 'true' && initialiseData,
   cookieSecret: process.env.COOKIE_SECRET,
   cookie,
+  cors:
+    process.env.NODE_ENV === 'production'
+      ? { origin: /firefly-tau\.vercel\.app/ }
+      : { origin: true, credentials: true },
   secureCookies: false, //<-- needed on non-SSL servers
   sessionStore: new MongoStore({
     url: process.env.MONGO_URL,
