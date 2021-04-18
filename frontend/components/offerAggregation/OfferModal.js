@@ -15,13 +15,16 @@ import { OfferModalFooterTag } from "./OfferModalFooterTag";
 import { OfferModalImage } from "./OfferModalImage";
 import { OfferModalFooterNav } from "./OfferModalFooterNav";
 
-export default function OfferModal({ isOpen, onClose, ...offerProps }) {
+export default function OfferModal({
+  offer,
+  isOpen,
+  onClose,
+  ...restOfferProps
+}) {
   let DOMPurify;
   if (typeof window !== "undefined") {
     DOMPurify = createDOMPurify(window);
   }
-
-  const { offer, ...restOfferProps } = offerProps;
 
   const { title, description, offerImages, owner } = offer || {};
 

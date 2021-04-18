@@ -8,6 +8,8 @@ import { Icon } from "../Icon";
 import { Offer } from "../Offer/Offer";
 import { OfferHeader } from "../Offer/OfferHeader";
 import { Avatar } from "./Avatar";
+import { useOffer } from "../../hooks/useOffer";
+import OfferModal from "../offerAggregation/OfferModal";
 
 const USERPROFILE_QUERY = gql`
   query singleUser($id: ID!) {
@@ -35,7 +37,15 @@ const USERPROFILE_QUERY = gql`
 `;
 
 export default function UserProfilePage({ query }) {
+  const {
+    handleOfferClick,
+    isOpen,
+    onClose,
+    selectedOfferIndex,
+    setSelectedOfferIndex,
+  } = useOffer();
   const [allImages, setAllImages] = useState([]);
+
   const { id } = query;
   const { data, error, loading } = useQuery(USERPROFILE_QUERY, {
     variables: { id },
@@ -44,10 +54,19 @@ export default function UserProfilePage({ query }) {
 
   const userImg = userImage?.image?.publicUrlTransformed;
 
+  const offerProps = {
+    isOpen,
+    onClose,
+    selectedOfferIndex,
+    setSelectedOfferIndex,
+    offer: offers?.[selectedOfferIndex],
+    maxIndex: offers?.length - 1,
+  };
+
   useEffect(() => {
     // get all offerImages belong to the user
     const allImages = offers?.reduce((pre, cur) => {
-      const currentImages = cur.offerImages.image;
+      const currentImages = cur?.offerImages?.image || [];
       return pre.concat(currentImages);
     }, []);
     setAllImages(allImages);
@@ -62,8 +81,8 @@ export default function UserProfilePage({ query }) {
       <Flex direction="column" flex="1" h="100%" overflow="auto">
         <OfferHeader marginBottom="16px">{`${name}'s on-going offers (${offers?.length})`}</OfferHeader>
         <VStack marginBottom={9} spacing="16px" as="ul">
-          {offers?.map(({ title, id }) => (
-            <Offer as="li" id={id} key={id}>
+          {offers?.map(({ title, id }, index) => (
+            <Offer as="li" id={id} key={id} onClick={handleOfferClick(index)}>
               {title}
             </Offer>
           ))}
@@ -88,6 +107,7 @@ export default function UserProfilePage({ query }) {
         <Icon icon={BiMessageRoundedEdit} text="Message" />
         <Icon icon={BiPlusCircle} text="Add Offer" />
       </Flex>
+      <OfferModal {...offerProps} />
     </Flex>
   );
 }

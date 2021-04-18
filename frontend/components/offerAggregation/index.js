@@ -7,6 +7,7 @@ import OfferModal from "./OfferModal";
 import { HomeFooter } from "./HomeFooter";
 import { HomeHeader } from "./HomeHeader";
 import { OfferHeader } from "../Offer/OfferHeader";
+import { useOffer } from "../../hooks/useOffer";
 
 const ALL_OFFERS_QUERY = gql`
   query ALL_OFFERS_QUERY {
@@ -29,22 +30,26 @@ const ALL_OFFERS_QUERY = gql`
 `;
 
 export default function OfferAggregation() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedOfferIndex, setSelectedOfferIndex] = useState(null);
+  const {
+    isOpen,
+    onClose,
+    selectedOfferIndex,
+    setSelectedOfferIndex,
+    handleOfferClick,
+  } = useOffer();
+
   const { data, error } = useQuery(ALL_OFFERS_QUERY);
   if (error) {
     console.log(error);
   }
   const allOffers = data?.allOffers;
-  const handleOfferClick = (index) => () => {
-    setSelectedOfferIndex(index);
-    onOpen();
-  };
 
   const offerProps = {
-    offer: allOffers?.[selectedOfferIndex],
+    isOpen,
+    onClose,
     selectedOfferIndex,
     setSelectedOfferIndex,
+    offer: allOffers?.[selectedOfferIndex],
     maxIndex: allOffers?.length - 1,
   };
   return (
@@ -69,12 +74,7 @@ export default function OfferAggregation() {
       </VStack>
       <HomeFooter />
 
-      <OfferModal
-        onOpen={onOpen}
-        onClose={onClose}
-        isOpen={isOpen}
-        {...offerProps}
-      />
+      <OfferModal {...offerProps} />
     </Flex>
   );
 }
