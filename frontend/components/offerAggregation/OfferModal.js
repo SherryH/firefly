@@ -7,15 +7,13 @@ import {
   ModalBody,
   Heading,
   Flex,
-  Icon,
   Text,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import createDOMPurify from "dompurify";
 import { OfferModalFooterTag } from "./OfferModalFooterTag";
 import { OfferModalImage } from "./OfferModalImage";
-import { disabledCssObj } from "../../lib/commonCss";
+import { OfferModalFooterNav } from "./OfferModalFooterNav";
 
 export default function OfferModal({ isOpen, onClose, ...offerProps }) {
   let DOMPurify;
@@ -23,31 +21,18 @@ export default function OfferModal({ isOpen, onClose, ...offerProps }) {
     DOMPurify = createDOMPurify(window);
   }
 
-  const {
-    offer,
-    setSelectedOfferIndex,
-    selectedOfferIndex,
-    maxIndex,
-  } = offerProps;
+  const { offer, ...restOfferProps } = offerProps;
 
   const { title, description, offerImages, owner } = offer || {};
 
-  const disablePreNav = selectedOfferIndex === 0;
-  const disableNextNav = selectedOfferIndex === maxIndex;
-
-  const handleNavigationClick = (offset) => {
-    const newIndex = selectedOfferIndex + offset;
-    if (newIndex < 0 || newIndex > maxIndex) return;
-    setSelectedOfferIndex(newIndex);
-  };
-
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent h="90%">
           <ModalHeader>
             <Heading
+              id="hoho"
               width="fit-content"
               bgGradient="linear(to bottom, transparent 55%, bg.100 85% 100%)"
             >
@@ -80,20 +65,7 @@ export default function OfferModal({ isOpen, onClose, ...offerProps }) {
               pt="24px"
               color="brand.900"
             >
-              <Icon
-                sx={disablePreNav && { ...disabledCssObj }}
-                as={BiChevronLeft}
-                w={10}
-                h={10}
-                onClick={() => handleNavigationClick(-1)}
-              />
-              <Icon
-                sx={disableNextNav && { ...disabledCssObj }}
-                as={BiChevronRight}
-                w={10}
-                h={10}
-                onClick={() => handleNavigationClick(1)}
-              />
+              <OfferModalFooterNav {...restOfferProps} />
             </Flex>
           </ModalFooter>
         </ModalContent>
