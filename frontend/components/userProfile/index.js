@@ -23,6 +23,10 @@ const USERPROFILE_QUERY = gql`
       offers {
         id
         title
+        owner {
+          id
+          name
+        }
         description
         offerImages {
           image {
