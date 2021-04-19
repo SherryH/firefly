@@ -3,11 +3,10 @@ import { VStack, Flex, useDisclosure } from "@chakra-ui/react";
 import { gql, useQuery } from "@apollo/client";
 
 import { Offer } from "../Offer/Offer";
-import OfferModal from "./OfferModal";
 import { HomeFooter } from "./HomeFooter";
 import { HomeHeader } from "./HomeHeader";
 import { OfferHeader } from "../Offer/OfferHeader";
-import { useOffer } from "../../hooks/useOffer";
+import { useOffer, OfferModal } from "../../hooks/useOffer";
 
 const ALL_OFFERS_QUERY = gql`
   query ALL_OFFERS_QUERY {

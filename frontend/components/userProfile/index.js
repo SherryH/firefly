@@ -8,8 +8,7 @@ import { Icon } from "../Icon";
 import { Offer } from "../Offer/Offer";
 import { OfferHeader } from "../Offer/OfferHeader";
 import { Avatar } from "./Avatar";
-import { useOffer } from "../../hooks/useOffer";
-import OfferModal from "../offerAggregation/OfferModal";
+import { useOffer, OfferModal } from "../../hooks/useOffer";
 
 const USERPROFILE_QUERY = gql`
   query singleUser($id: ID!) {
