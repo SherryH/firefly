@@ -1,7 +1,7 @@
 
 # Firefly Project
 
-This App aims to encourage social interaction between individuals in a city through offers of skills, hobbies and interests.
+A networking app aims to encourage social interaction between individuals in a city through offers of skills, hobbies and interests.
 You get to paint a picutre of someone from what they are willing to share!
 
 <img src="/frontend/public/static/firefly.gif" height="450"/>
