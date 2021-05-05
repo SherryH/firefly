@@ -51,6 +51,7 @@ The app will start running in `http://localhost:7777/`
 ```
 
 ## Deployment
+Note: Moving to Digital Ocean!
 ### Frontend: 
 `git push` triggers the deployment to Vercel
 
