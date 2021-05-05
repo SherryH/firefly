@@ -1,0 +1,21 @@
+name: firefly
+
+static_sites:
+  - name: frontend
+    github:
+      repo: digitalocean/firefly
+      branch: main
+      deploy_on_push: true
+    source_dir: frontend
+    routes:
+      - path: /
+
+services:
+  - name: backend
+    github:
+      repo: digitalocean/firefly
+      branch: main
+      deploy_on_push: true
+    source_dir: backend
+    routes:
+      - path: /backend
