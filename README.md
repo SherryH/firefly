@@ -17,17 +17,19 @@ https://firefly-tau.vercel.app/
 https://twinkling-firefly.herokuapp.com/  
 ## Tech Stack
 
-**Client:** NextJS, Chakra UI, Cloudinary, Mongo DB
+**Client:** NextJS, Chakra UI, Cloudinary
 
 **Server:** KeystoneJS
 
+**Database:** Mongo DB
 
 ## Features
 
 - Display of offers in aggregation view and users view 
-- Authentication and User Login (WIP)
+- FB Authentication and User Login (WIP)
 
 ## TODO
+- CORS BUG! (taking a few min to load FE)
 - Messaging 
 - Offer creation and update 
 
