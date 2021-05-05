@@ -16,11 +16,13 @@ https://firefly-tau.vercel.app/
 https://twinkling-firefly.herokuapp.com/  
 ## Tech Stack
 
-**Client:** NextJS, Chakra UI, Cloudinary
+**Client:** NextJS (React), Chakra UI, Cloudinary
 
 **Server:** KeystoneJS
 
 **Database:** Mongo DB
+
+**API:** GraphQL
 
 ## Features
 
