@@ -4,7 +4,7 @@
 This App aims to encourage social interaction between individuals in a city through offers of skills, hobbies and interests.
 You get to paint a picutre of someone from what they are willing to share!
 
-
+![FireflyGif](https://prnt.sc/12ifgfi)
 
 
 ## Demo
