@@ -6,6 +6,7 @@ const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
 const { Text, Checkbox, Password } = require('@keystonejs/fields');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
+const { FacebookAuthStrategy } = require('@keystonejs/auth-passport');
 const initialiseData = require('./initial-data');
 const UserProfileSchema = require('./lists/UserProfile.js');
 const OfferSchema = require('./lists/Offer.js');
@@ -19,7 +20,7 @@ const adapterConfig = {
 };
 
 const cookie = {
-  secure: false, //<-- needed on non-SSL servers. Set to true if SSL enabled
+  secure: true, //<-- needed on non-SSL servers. Set to true if SSL enabled
   maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
   sameSite: false,
 };
@@ -33,7 +34,7 @@ const keystone = new Keystone({
     process.env.NODE_ENV === 'production'
       ? { origin: /firefly-tau\.vercel\.app/ }
       : { origin: true, credentials: true },
-  secureCookies: false, //<-- needed on non-SSL servers
+  secureCookies: true, //<-- needed on non-SSL servers
   sessionStore: new MongoStore({
     url: process.env.MONGO_URL,
   }),
@@ -94,6 +95,7 @@ keystone.createList('Offer', OfferSchema);
 keystone.createList('UserImage', UserImageSchema);
 keystone.createList('OfferImage', OfferImageSchema);
 
+// comment this authStrategy and use Facebook Strategy
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
   list: 'User',
